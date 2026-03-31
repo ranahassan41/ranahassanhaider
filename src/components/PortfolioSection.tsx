@@ -4,6 +4,7 @@ import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
 import portfolio5 from "@/assets/portfolio-5.jpg";
+import portfolio6 from "@/assets/portfolio-6.jpg";
 
 const projects = [
   { img: portfolio1, title: "Luxury Brand Identity", category: "Logo Design" },
@@ -11,6 +12,7 @@ const projects = [
   { img: portfolio3, title: "Corporate Stationery", category: "Branding" },
   { img: portfolio4, title: "Geometric Logo Concept", category: "Logo Design" },
   { img: portfolio5, title: "Social Media Campaign", category: "Poster Design" },
+  { img: portfolio6, title: "Logo Collection", category: "Logo Design" },
 ];
 
 const PortfolioSection = () => {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -27,8 +28,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <a href="#home" className="font-display text-2xl font-bold gold-gradient-text">
-          RHH
+        <a href="#home" className="flex items-center gap-2">
+          <img src={logo} alt="RHH Logo" className="h-8 w-auto" />
         </a>
 
         {/* Desktop */}
