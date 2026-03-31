@@ -2,31 +2,68 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
+const wordVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.5, delay: 0.3 + i * 0.1 },
+  }),
+};
+
 const HeroSection = () => {
+  const descWords = "Creative Logo Designer & Visual Identity Enthusiast. Crafting unique brand experiences through design.".split(" ");
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(43_74%_55%_/_0.06)_0%,_transparent_70%)]" />
 
       <div className="container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20 py-24">
-        {/* Text */}
         <motion.div
           className="flex-1 text-center lg:text-left"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          initial="hidden"
+          animate="visible"
         >
-          <p className="text-primary font-body text-sm uppercase tracking-[0.3em] mb-4">
+          <motion.p
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-primary font-body text-sm uppercase tracking-[0.3em] mb-4"
+          >
             Graphic Designer
-          </p>
+          </motion.p>
           <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
-            Rana Hassan{" "}
-            <span className="gold-gradient-text">Haider</span>
+            <motion.span
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-block"
+            >
+              Rana Hassan{" "}
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="gold-gradient-text inline-block"
+            >
+              Haider
+            </motion.span>
           </h1>
           <p className="text-muted-foreground font-body text-lg md:text-xl max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
-            Creative Logo Designer & Visual Identity Enthusiast. Crafting unique brand experiences through design.
+            {descWords.map((word, i) => (
+              <motion.span key={i} custom={i} variants={wordVariants} className="inline-block mr-[0.3em]">
+                {word}
+              </motion.span>
+            ))}
           </p>
-          <div className="flex gap-4 justify-center lg:justify-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="flex gap-4 justify-center lg:justify-start"
+          >
             <a
               href="#portfolio"
               className="inline-flex items-center px-8 py-3 rounded-full bg-primary text-primary-foreground font-body font-semibold text-sm tracking-wide hover:shadow-[var(--gold-glow)] transition-all duration-300"
@@ -39,10 +76,9 @@ const HeroSection = () => {
             >
               Hire Me
             </a>
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Profile Image */}
         <motion.div
           className="flex-shrink-0"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -61,7 +97,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.a
         href="#about"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors"
