@@ -9,12 +9,21 @@ const contactInfo = [
   { icon: Linkedin, label: "LinkedIn", value: "Rana Hassan Haider", href: "#" },
 ];
 
+const letterVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, delay: i * 0.03 },
+  }),
+};
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const headingText = "Touch";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     setFormData({ name: "", email: "", message: "" });
   };
 
@@ -22,34 +31,51 @@ const ContactSection = () => {
     <section id="contact" className="py-24 relative">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary font-body text-sm uppercase tracking-[0.3em] mb-3">Let's connect</p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-primary font-body text-sm uppercase tracking-[0.3em] mb-3"
+          >
+            Let's connect
+          </motion.p>
           <h2 className="section-heading">
-            Get In <span className="gold-gradient-text">Touch</span>
+            Get In{" "}
+            <span className="gold-gradient-text inline-flex overflow-hidden">
+              {headingText.split("").map((char, i) => (
+                <motion.span key={i} custom={i} variants={letterVariants}>
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          {/* Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="flex flex-col gap-6"
           >
             <p className="font-body text-muted-foreground leading-relaxed">
               Have a project in mind or want to collaborate? Feel free to reach out. I'd love to hear from you!
             </p>
-            {contactInfo.map((item) => (
-              <a
+            {contactInfo.map((item, i) => (
+              <motion.a
                 key={item.label}
                 href={item.href}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="glass-card p-4 flex items-center gap-4 hover:border-primary/40 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -59,16 +85,15 @@ const ContactSection = () => {
                   <p className="font-body text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
                   <p className="font-body text-sm text-foreground font-medium">{item.value}</p>
                 </div>
-              </a>
+              </motion.a>
             ))}
           </motion.div>
 
-          {/* Form */}
           <motion.form
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={handleSubmit}
             className="flex flex-col gap-4"
           >

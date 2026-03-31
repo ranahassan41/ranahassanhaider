@@ -16,20 +16,45 @@ const services = [
   },
 ];
 
+const letterVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, delay: i * 0.03 },
+  }),
+};
+
 const ServicesSection = () => {
+  const headingText = "Services";
+
   return (
     <section id="services" className="py-24 relative">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary font-body text-sm uppercase tracking-[0.3em] mb-3">What I offer</p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-primary font-body text-sm uppercase tracking-[0.3em] mb-3"
+          >
+            What I offer
+          </motion.p>
           <h2 className="section-heading">
-            My <span className="gold-gradient-text">Services</span>
+            My{" "}
+            <span className="gold-gradient-text inline-flex overflow-hidden">
+              {headingText.split("").map((char, i) => (
+                <motion.span key={i} custom={i} variants={letterVariants}>
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           </h2>
         </motion.div>
 
@@ -37,9 +62,9 @@ const ServicesSection = () => {
           {services.map((service, i) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
               className="glass-card p-8 group hover:border-primary/40 transition-all duration-300"
             >
