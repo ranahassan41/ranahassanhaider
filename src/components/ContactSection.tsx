@@ -3,10 +3,10 @@ import { Mail, Phone, Instagram, Linkedin, Send } from "lucide-react";
 import { useState } from "react";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "ranhassan@email.com", href: "mailto:ranhassan@email.com" },
-  { icon: Phone, label: "Phone", value: "+92 300 0000000", href: "tel:+923000000000" },
-  { icon: Instagram, label: "Instagram", value: "@ranahassan.design", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", value: "Rana Hassan Haider", href: "#" },
+  { icon: Mail, label: "Email", value: "thelogodesignerofficial@gmail.com", href: "mailto:thelogodesignerofficial@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+92 345 0075554", href: "tel:+923450075554" },
+  { icon: Instagram, label: "Instagram", value: "@thelogodesignerofficial", href: "https://www.instagram.com/thelogodesignerofficial/" },
+  { icon: Linkedin, label: "LinkedIn", value: "Hassan Haider", href: "https://www.linkedin.com/in/hassan-haider-designer" },
 ];
 
 const letterVariants = {
