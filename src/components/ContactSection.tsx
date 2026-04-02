@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Instagram, Linkedin, Send } from "lucide-react";
-import { useState } from "react";
+import { Mail, Phone, Instagram, Linkedin } from "lucide-react";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "thelogodesignerofficial@gmail.com", href: "mailto:thelogodesignerofficial@gmail.com" },
-  { icon: Phone, label: "Phone", value: "+92 345 0075554", href: "tel:+923450075554" },
-  { icon: Instagram, label: "Instagram", value: "@thelogodesignerofficial", href: "https://www.instagram.com/thelogodesignerofficial/" },
+  { icon: Mail, label: "Gmail", value: "thelogodesignerofficial@gmail.com", href: "mailto:thelogodesignerofficial@gmail.com" },
   { icon: Linkedin, label: "LinkedIn", value: "Hassan Haider", href: "https://www.linkedin.com/in/hassan-haider-designer" },
+  { icon: Instagram, label: "Instagram", value: "@thelogodesignerofficial", href: "https://www.instagram.com/thelogodesignerofficial/" },
+  { icon: Phone, label: "Contact", value: "+92 345 0075554", href: "tel:+923450075554" },
 ];
 
 const letterVariants = {
@@ -19,13 +18,7 @@ const letterVariants = {
 };
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const headingText = "Touch";
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormData({ name: "", email: "", message: "" });
-  };
 
   return (
     <section id="contact" className="py-24 relative">
@@ -57,80 +50,38 @@ const ContactSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-6"
+        <div className="max-w-2xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="font-body text-muted-foreground leading-relaxed text-center mb-10"
           >
-            <p className="font-body text-muted-foreground leading-relaxed">
-              Have a project in mind or want to collaborate? Feel free to reach out. I'd love to hear from you!
-            </p>
+            Have a project in mind or want to collaborate? Feel free to reach out. I'd love to hear from you!
+          </motion.p>
+
+          <div className="grid grid-cols-2 gap-4">
             {contactInfo.map((item, i) => (
               <motion.a
                 key={item.label}
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="glass-card p-4 flex items-center gap-4 hover:border-primary/40 transition-all duration-300"
+                className="glass-card p-5 flex flex-col items-center gap-3 hover:border-primary/40 hover:scale-105 transition-all duration-300 text-center"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <item.icon className="text-primary" size={18} />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <item.icon className="text-primary" size={22} />
                 </div>
-                <div>
-                  <p className="font-body text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
-                  <p className="font-body text-sm text-foreground font-medium">{item.value}</p>
-                </div>
+                <p className="font-body text-sm text-foreground font-semibold">{item.label}</p>
+                <p className="font-body text-xs text-muted-foreground break-all">{item.value}</p>
               </motion.a>
             ))}
-          </motion.div>
-
-          <motion.form
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-4"
-          >
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-5 py-3 rounded-lg bg-secondary border border-border text-foreground font-body text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
-              required
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-5 py-3 rounded-lg bg-secondary border border-border text-foreground font-body text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
-              required
-            />
-            <textarea
-              placeholder="Your Message"
-              rows={5}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-5 py-3 rounded-lg bg-secondary border border-border text-foreground font-body text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all resize-none"
-              required
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-body font-semibold text-sm tracking-wide hover:shadow-[var(--gold-glow)] transition-all duration-300 w-fit"
-            >
-              Send Message
-              <Send size={16} />
-            </button>
-          </motion.form>
+          </div>
         </div>
       </div>
     </section>
